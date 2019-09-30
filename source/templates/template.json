@@ -22,8 +22,8 @@
 	"disk_size": 10000,
 	"format": "raw",
         "headless": "false",
-        "http_directory": "files",
-	"iso_url": "files/images/rhel-server-7.6-x86_64-dvd.iso",
+        "http_directory": "source/files",
+	"iso_url": "source/files/images/rhel-server-7.6-x86_64-dvd.iso",
         "memory": 512,
         "net_device": "virtio-net",
         "output_directory": "output_images/rhel76",
@@ -44,12 +44,17 @@
   "provisioners": [
     {
       "type": "file",
-      "source": "files/.vimrc",
+      "source": "source/files/.vimrc",
       "destination": "/tmp/.vimrc"
     },
     {
+      "type": "file",
+      "source": "source/variables/secrets.pass",
+      "destination": "/tmp/secrets.pass"
+    },
+    {
       "type": "shell",
-      "script": "scripts/register.sh"
+      "script": "source/scripts/register.sh"
     }
   ]
 }

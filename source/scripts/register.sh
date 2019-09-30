@@ -7,7 +7,8 @@ timestamp()
 
 echo "${timestamp}: Registering the system"
 
-source ./secrets.pass
+source /tmp/secrets.pass
+rm /tmp/secrets.pass
 
 subscription-manager register --username ${USERNAME} --password ${PASSWORD}
 subscription-manager attach --pool=${POOLID}
