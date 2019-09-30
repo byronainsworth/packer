@@ -1,0 +1,33 @@
+{
+    "builders":
+    [
+      {
+        "type": "qemu",
+	"qemu_binary": "/usr/bin/qemu-system-x86_64",
+        "headless": "true",
+        "iso_url": "rhel-server-7.6-x86_64-dvd.iso",
+	"iso_checksum": "60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c",
+        "iso_checksum_type": "sha256",
+        "output_directory": "output_images",
+        "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
+        "disk_size": 10000,
+        "format": "raw",
+        "accelerator": "kvm",
+        "ssh_username": "root",
+        "ssh_password": "redhat",
+        "ssh_timeout": "20m",
+        "vm_name": "rhel-server-7.6-azure-v6.2.raw",
+        "net_device": "virtio-net",
+        "disk_interface": "virtio",
+        "boot_wait": "10s",
+        "http_directory": "kickstart",
+        "qemuargs": [
+          [ "-m", "2048M" ]
+        ],
+        "boot_command": [
+          "<up><wait><tab><wait> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/rhel76-ks.cfg<enter><wait>"
+        ]
+      }
+    ]
+
+}

@@ -1,0 +1,55 @@
+{
+    "variables":
+    {
+      "basedir": "http://10.76.18.72/rhel76-ks.cfg"
+    },
+    "builders":
+    [
+      {
+        "type": "qemu",
+	"iso_checksum": "60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c",
+        "iso_checksum_type": "sha256",
+        "accelerator": "kvm",
+	"boot_command": 
+	[
+            "<up><wait>",
+	    "<tab><wait>",
+	    "text ks=http://{{.HTTPIP}}:{{.HTTPPort}}/kickstarts/rhel76-ks.cfg<enter><wait>"
+        ],
+	"boot_wait": "10s",
+	"cpus": 1,
+	"disk_interface": "virtio",
+	"disk_size": 10000,
+	"format": "raw",
+        "headless": "false",
+        "http_directory": "files",
+	"iso_url": "files/images/rhel-server-7.6-x86_64-dvd.iso",
+        "memory": 512,
+        "net_device": "virtio-net",
+        "output_directory": "output_images/rhel76",
+        "qemu_binary": "/usr/bin/qemu-system-x86_64",
+        "qemuargs": [
+            [ "-m", "2048M" ]
+         ],
+	"shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
+        "shutdown_timeout": "5m",
+        "skip_compaction": "false",
+        "vm_name": "rhel-server-7.6-azure-v6.2.raw",
+
+	"ssh_username": "root",
+        "ssh_password": "redhat",
+        "ssh_timeout": "20m"
+      }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "files/.vimrc",
+      "destination": "/tmp/.vimrc"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/register.sh"
+    }
+  ]
+}
