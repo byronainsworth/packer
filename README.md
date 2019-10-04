@@ -1,6 +1,6 @@
 # packer
 
-Packer confinguration to build a Red Hat Enterprise Linux 7.6 VM, configured for upload to Azure.
+Packer confinguration to build a Red Hat Enterprise Linux 7.6 VM, ready for conversion and upload to Azure.
 Output of build.sh is a .raw disk image containing a configured VM.  
 VM is configured with 2048MB of swap, via waagent.
 
@@ -13,17 +13,21 @@ VM is configured with 2048MB of swap, via waagent.
  
   `./source/variables/secrets.pass`
   
-  Contains RHEL subscription user-name & passowrd in format:
+  Contains RHEL subscription user-name & password in format:
   
-      `USERNAME=myusername`
+      USERNAME=myusername
       
-      `PASSWORD=mypassword`
+      PASSWORD=mypassword
       
-      `POOLID= 'pool ID from Red Hat subscription'`  
+      POOLID= 'pool ID from Red Hat subscription'  
 
   POOLID currently unused.
+  
       
-      
+  `./source/templates/template.json`
+   
+ packer configuration file
+     
       
   `./source/scripts/register.sh`
   
