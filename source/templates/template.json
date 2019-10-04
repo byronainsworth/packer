@@ -24,13 +24,14 @@
         "headless": "false",
         "http_directory": "source/files",
 	"iso_url": "source/files/images/rhel-server-7.6-x86_64-dvd.iso",
-        "memory": 512,
+        "memory": 1024,
         "net_device": "virtio-net",
         "output_directory": "output_images/rhel76",
-        "qemu_binary": "/usr/bin/qemu-system-x86_64",
+        "qemu_binary": "/usr/libexec/qemu-kvm",
         "qemuargs": [
-            [ "-m", "2048M" ]
+            [  "-display", "none" ]
          ],
+
 	"shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
         "shutdown_timeout": "5m",
         "skip_compaction": "false",
