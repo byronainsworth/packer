@@ -3,5 +3,4 @@
 *.raw
 *.vhd
 *.log
-source/packer_cache/port/
-source/packer_cache/
+packer_cache
